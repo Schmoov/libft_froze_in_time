@@ -4,19 +4,21 @@ SRC_DIR := src/
 INC_DIR := include/
 OBJ_DIR := bin/
 TST_DIR := tests/
+TST_BIN := bin/tests/
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -pedantic
 
-SRC := $(wildcard $(SRC_DIR)**/*.c)
+SRC := $(wildcard $(SRC_DIR)*/*.c)
 
 OBJ := $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 OBJ_PATH := $(sort $(dir $(OBJ)))
 
 HEADER := $(wildcard $(INC_DIR)*.h)
 
-TEST := $(wildcard $(TST_DIR)*.c)
-TEST_NAME := $(basename $(notdir $(TEST)))
+TEST := $(wildcard $(TST_DIR)*/*.c)
+TEST_NAME := $(basename  $(TEST))
+TEST_PATH := $(sort $(dir $(TEST)))
 
 ###############################################################################
 
@@ -29,14 +31,17 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@ mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-%.test: $(TST_DIR)%.test.c
-	$(CC) $(CFLAGS) $< $(NAME) -lcriterion -o $@
-	./$@
+%.test: %.test.c
+	@ mkdir -p $(TST_BIN)
+	$(CC) $(CFLAGS) $< $(NAME) -lcriterion -o $(TST_BIN)$(notdir $@)
+	./$(TST_BIN)$(notdir $@)
 
 test: all $(TEST_NAME)
 
+print-%  : ; @echo $* = $($*)
+
 tclean:
-	rm -f $(TEST_NAME)
+	rm -rf $(TST_BIN)
 
 clean: tclean
 	rm -rf $(OBJ_DIR)
