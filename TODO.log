@@ -1,0 +1,2 @@
+Strlcat and Strlcpy have inline memcpy. It may be preferable to call memcpy,
+both for clarity and performance.
