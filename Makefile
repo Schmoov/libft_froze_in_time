@@ -31,7 +31,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 %.test: $(TST_DIR)%.test.c
 	$(CC) $(CFLAGS) $< $(NAME) -lcriterion -o $@
-	./$@ --verbose
+	./$@
 
 test: all $(TEST_NAME)
 
