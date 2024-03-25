@@ -6,18 +6,19 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:31:49 by parden            #+#    #+#             */
-/*   Updated: 2024/03/23 13:08:59 by parden           ###   ########.fr       */
+/*   Updated: 2024/03/25 17:59:20 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include "../../include/ft_string.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
 	if (!dstsize)
-		return (0);
+		return (ft_strlen(src));
 	i = 0;
 	while (src[i] && i < dstsize - 1)
 	{

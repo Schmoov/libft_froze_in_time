@@ -4,7 +4,7 @@ SRC_DIR := src/
 INC_DIR := include/
 OBJ_DIR := bin/
 TST_DIR := tests/
-TST_BIN := bin/tests/
+TST_BIN := testbin/
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -pedantic
@@ -17,7 +17,7 @@ OBJ_PATH := $(sort $(dir $(OBJ)))
 HEADER := $(wildcard $(INC_DIR)*.h)
 
 TEST := $(wildcard $(TST_DIR)*/*.c)
-TEST_NAME := $(basename  $(TEST))
+TEST_NAME := $(patsubst $(TST_DIR)%.test.c, $(TST_BIN)%.test, $(TEST))
 TEST_PATH := $(sort $(dir $(TEST)))
 
 ###############################################################################
@@ -31,10 +31,10 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@ mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-%.test: %.test.c
-	@ mkdir -p $(TST_BIN)
-	$(CC) $(CFLAGS) $< $(NAME) -lcriterion -o $(TST_BIN)$(notdir $@)
-	./$(TST_BIN)$(notdir $@)
+$(TST_BIN)%.test: $(TST_DIR)%.test.c
+	@ mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $< $(NAME) -lbsd -lcriterion -o $@
+	./$@
 
 test: all $(TEST_NAME)
 
