@@ -146,6 +146,33 @@ Test(strlcat, size_is_zero)
 	cr_assert_eq(l1,l2);
 }
 
+Test(strlcat, dstlen_bigger_than_size)
+{
+	char *dst1 = strdup("0123456789");
+	char *dst2 = strdup("0123456789");
+	char *src = "abcde";
+
+	size_t l1 = strlcat(dst1,src,0);
+	size_t l2 = ft_strlcat(dst2,src,0);
+	cr_assert_str_eq(dst1,dst2);
+	cr_assert_eq(l1,l2);
+	
+	l1 = strlcat(dst1,src,1);
+	l2 = ft_strlcat(dst2,src,1);
+	cr_assert_str_eq(dst1,dst2);
+	cr_assert_eq(l1,l2);
+	
+	l1 = strlcat(dst1,src,2);
+	l2 = ft_strlcat(dst2,src,2);
+	cr_assert_str_eq(dst1,dst2);
+	cr_assert_eq(l1,l2);
+	
+	l1 = strlcat(dst1,src,7);
+	l2 = ft_strlcat(dst2,src,7);
+	cr_assert_str_eq(dst1,dst2);
+	cr_assert_eq(l1,l2);
+}
+
 Test(strlcat, big_ass_string)
 {
 	char dst1[INT_MAX/1000];
