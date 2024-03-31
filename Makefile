@@ -4,7 +4,7 @@ SRC_DIR := src/
 INC_DIR := include/
 OBJ_DIR := bin/
 TST_DIR := tests/
-TST_BIN := testbin/
+TST_BIN := bintest/
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -pedantic

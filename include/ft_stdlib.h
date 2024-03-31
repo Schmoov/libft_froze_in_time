@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_stdlib.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 12:18:12 by parden            #+#    #+#             */
-/*   Updated: 2024/03/30 10:46:48 by parden           ###   ########.fr       */
+/*   Created: 2024/03/30 12:04:25 by parden            #+#    #+#             */
+/*   Updated: 2024/03/30 12:12:58 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#ifndef FT_STDLIB_H
+# define FT_STDLIB_H
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
-{
-	size_t	i;
-	size_t	j;
+int		ft_atoi(const char *nptr);
+void	*ft_calloc(size_t nelem, size_t elsize);
+char	*ft_strdup(const char *s);
 
-	i = 0;
-	while ((i < len) && big[i])
-	{
-		j = 0;
-		while (big[i + j] && little[j] && (i + j < len)
-			&& (big[i + j] == little[j]))
-			j++;
-		if (!little[j])
-			return ((char *)big + i);
-		i++;
-	}
-	if (!(*little))
-		return ((char *)big);
-	return (NULL);
-}
+#endif
