@@ -8,6 +8,7 @@ TST_BIN := bintest/
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -pedantic
+ASAN := -fsanitize=address
 
 SRC := $(wildcard $(SRC_DIR)*/*.c)
 
@@ -16,9 +17,10 @@ OBJ_PATH := $(sort $(dir $(OBJ)))
 
 HEADER := $(wildcard $(INC_DIR)*.h)
 
-TEST := $(wildcard $(TST_DIR)*/*.c)
+TEST := $(wildcard $(TST_DIR)*/*.test.c)
+MTEST := $(wildcard $(TST_DIR)*/*.memtest.c)
 TEST_NAME := $(patsubst $(TST_DIR)%.test.c, $(TST_BIN)%.test, $(TEST))
-TEST_PATH := $(sort $(dir $(TEST)))
+MTEST_NAME := $(patsubst $(TST_DIR)%.memtest.c, $(TST_BIN)%.memtest, $(MTEST))
 
 ###############################################################################
 
@@ -36,7 +38,13 @@ $(TST_BIN)%.test: $(TST_DIR)%.test.c
 	$(CC) $(CFLAGS) $< $(NAME) -lbsd -lcriterion -o $@
 	./$@
 
-test: all $(TEST_NAME)
+$(TST_BIN)%.memtest: $(TST_DIR)%.memtest.c
+	@ export ASAN_OPTIONS=log_path=0:abort_on_error=1
+	@ mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $< $(NAME) -lbsd -lcriterion -fsanitize=address -o $@
+	./$@
+
+test: all $(TEST_NAME) $(MTEST_NAME)
 
 print-%  : ; @echo $* = $($*)
 
