@@ -1,4 +1,4 @@
-NAME := ft_ctype.a
+NAME := my_libft.a
 
 SRC_DIR := src/
 INC_DIR := include/
@@ -9,6 +9,7 @@ TST_BIN := bintest/
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -pedantic
 ASAN := -fsanitize=address
+ASAN_ENV := ASAN_OPTIONS=log_path=bintest/log:abort_on_error=1:allocator_may_return_null=1
 
 SRC := $(wildcard $(SRC_DIR)*/*.c)
 
@@ -39,10 +40,9 @@ $(TST_BIN)%.test: $(TST_DIR)%.test.c
 	./$@
 
 $(TST_BIN)%.memtest: $(TST_DIR)%.memtest.c
-	@ export ASAN_OPTIONS=log_path=0:abort_on_error=1
 	@ mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $< $(NAME) -lbsd -lcriterion -fsanitize=address -o $@
-	./$@
+	$(ASAN_ENV) ./$@
 
 test: all $(TEST_NAME) $(MTEST_NAME)
 
