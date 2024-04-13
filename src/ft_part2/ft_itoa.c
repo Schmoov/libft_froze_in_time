@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 10:40:38 by parden            #+#    #+#             */
-/*   Updated: 2024/04/12 10:57:38 by parden           ###   ########.fr       */
+/*   Updated: 2024/04/12 18:15:45 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static size_t	count_char(int n)
 
 	count = 0;
 	if (!n)
-		return (0);
+		return (1);
 	if (n < 0)
 		count++;
 	while (n)
@@ -30,7 +30,7 @@ static size_t	count_char(int n)
 	return (count);
 }
 
-char	*ft_itoa(int n)
+char	*itoa_wrap(long n)
 {
 	size_t	len;
 	char	*res;
@@ -43,12 +43,20 @@ char	*ft_itoa(int n)
 	if (!n)
 		*res = '0';
 	if (n < 0)
-		*res = '-';
-	while (n/10)
 	{
-		res[len - 1] = n % 10;
+		*res = '-';
+		n = -n;
+	}
+	while (n)
+	{
+		res[len - 1] = (n % 10) + '0';
 		len--;
 		n /= 10;
 	}
 	return (res);
+}
+
+char	*ft_itoa(int n)
+{
+	return (itoa_wrap(n));
 }

@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:31:27 by parden            #+#    #+#             */
-/*   Updated: 2024/04/11 15:48:10 by parden           ###   ########.fr       */
+/*   Updated: 2024/04/12 17:29:26 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static bool	is_in(char c, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
 	size_t	start;
 	size_t	len;
 	
