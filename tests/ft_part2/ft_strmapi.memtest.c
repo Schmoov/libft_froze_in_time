@@ -2,55 +2,51 @@
 #include <ctype.h>
 #include "../../include/libft.h"
 
-void f1(unsigned int i, char *s)
+char f1(unsigned int i, char c)
 {
-	*s = toupper(*s);
 	(void) i;
+	return (toupper(c));
 }
 
-void f2(unsigned int i, char *s)
+char f2(unsigned int i, char c)
 {
 	if (i%2)
-		*s = toupper(*s);
+		return(toupper(c));
 	else
-		*s = tolower(*s);
+		return(tolower(c));
 }
 
-void f3(unsigned int i, char *s)
+char f3(unsigned int i, char c)
 {
-	s[-i-42]=0;
-}
-
-void f4(unsigned int i, char *s)
-{
-	if (isalpha(*s))
-		*s = *s + (i%26);
+	char *button = NULL;
+	return (i + c + button[420]);
 }
 
 Test(strmapi, caps_lock)
 {
-	char *s = strdup("Tu m'enTends la ?");
-
-	ft_striteri(s, f1);
-	cr_expect_str_eq(s, "TU M'ENTENDS LA ?");
-	free(s);
+	char *s = "Tu m'enTends la ?";
+	char *t = ft_strmapi(s, f1);
+	cr_expect_str_eq(t, "TU M'ENTENDS LA ?");
+	free(t);
 }
 
-Test(striteri, bOb)
+Test(strmapi, bOb)
 {
-	char *s = strdup("Tu m'enTends la ?");
+	char *s = "Tu m'enTends la ?";
 
-	ft_striteri(s, f2);
-	cr_expect_str_eq(s, "tU M'EnTeNdS La ?");
-	free(s);
+	char *t = ft_strmapi(s, f2);
+	cr_expect_str_eq(t, "tU M'EnTeNdS La ?");
+	free(t);
 }
 
-Test(striteri, empty)
+Test(strmapi, empty)
 {
 	char *s = "";
-
-	ft_striteri(s, f2);
-	cr_expect_str_eq(s, "");
-	ft_striteri(s, f3);
-	cr_expect_str_eq(s, "");
+	
+	char *t = ft_strmapi(s, f2);
+	cr_expect_str_eq(t, "");
+	free(t);
+	t = ft_strmapi(s, f3);
+	cr_expect_str_eq(t, "");
+	free(t);
 }
