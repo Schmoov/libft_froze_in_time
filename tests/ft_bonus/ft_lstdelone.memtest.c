@@ -2,10 +2,14 @@
 #include <stdlib.h>
 #include "libft.h"
 
+void	identity(void *osef)
+{
+	(void) osef;
+}
+
 void	free_str(void *node)
 {
 	free((char *)((t_list *)node->content));
-	free((node *)node);
 }
 
 void	free_rubik(void *node)
@@ -18,7 +22,6 @@ void	free_rubik(void *node)
 	for (int i = 0; i < 3; i++)
 		free(cube[i]);
 	free(cube);
-	free((t_list *)node);
 }
 
 Test(lstdelone, basic)
