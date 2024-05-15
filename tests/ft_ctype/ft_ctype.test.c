@@ -1,7 +1,7 @@
 #include <ctype.h>
 #include <limits.h>
 #include <stdio.h>
-#include <criterion/criterion.h>
+#include "/home/parden/Desktop/Criterion/include/criterion/criterion.h"
 #include "../../include/ft_ctype.h"
 
 Test(ctype, isalnum)

@@ -6,6 +6,9 @@ OBJ_DIR := bin/
 TST_DIR := tests/
 TST_BIN := bintest/
 
+CRIT := libcriterion.so
+CRIT_ENV := LD_LIBRARY_PATH=~/lib/
+
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -pedantic
 ASAN := -fsanitize=address
@@ -36,13 +39,13 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 $(TST_BIN)%.test: $(TST_DIR)%.test.c
 	@ mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $< $(NAME) -lbsd -lcriterion -o $@
-	./$@
+	$(CC) $(CFLAGS) $< $(NAME) -lbsd $(CRIT) -o $@
+	$(CRIT_ENV) ./$@
 
 $(TST_BIN)%.memtest: $(TST_DIR)%.memtest.c
 	@ mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $< $(NAME) -lbsd -lcriterion -fsanitize=address -o $@
-	$(ASAN_ENV) ./$@
+	$(CC) $(CFLAGS) $< $(NAME) -lbsd $(CRIT) -fsanitize=address -o $@
+	$(ASAN_ENV) $(CRIT_ENV) ./$@
 
 test: all $(TEST_NAME) $(MTEST_NAME)
 
