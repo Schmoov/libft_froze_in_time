@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:09:52 by parden            #+#    #+#             */
-/*   Updated: 2024/04/10 11:48:16 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/17 17:31:58 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stddef.h>
 #include <criterion/criterion.h>
 #include <sanitizer/lsan_interface.h>
-#include "../../include/ft_stdlib.h"
+#include "libft.h"
 #include <errno.h>
 #include <signal.h>
 

@@ -23,23 +23,24 @@ test: $(TSTS)
 
 $(BIN_DIR)%.o: $(SRC_DIR)%.c
 	mkdir -p $(BIN_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I ./ -c $< -o $@
 
 %.test: $(BIN_DIR)%.test.o
-	$(CC) $(CFLAGS) -I ~/lib/Criterion/include $< $(NAME) -lbsd $(CRIT) -o $@
+	$(CC) $(CFLAGS) $< libft.a -lbsd $(CRIT) -o $@
 	$(CRIT_ENV) ./$@
 
-%.memtest: $(BIN_DIR)%.o
-	$(CC) $(CFLAGS) -I ~/lib/Criterion/include $< $(NAME) -lbsd $(CRIT) -fsanitize=address -o $@
+%.memtest: $(BIN_DIR)%.memtest.o
+	$(CC) $(CFLAGS) $< $(NAME) libft.a -lbsd $(CRIT) -fsanitize=address -o $@
 	$(ASAN_ENV) $(CRIT_ENV) ./$@
 
 print-%  : ; @echo $* = $($*)
 
 clean:
-	rm -f $(BIN_DIR)
+	rm -rf $(BIN_DIR)
 
 fclean: clean
 	rm *.test
+	rm *.memtest
 
 re: fclean all
 

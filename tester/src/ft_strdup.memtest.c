@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:09:52 by parden            #+#    #+#             */
-/*   Updated: 2024/04/10 11:52:24 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/17 17:34:01 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <signal.h>
 #include <sanitizer/lsan_interface.h>
 #include <criterion/criterion.h>
-#include "../../include/ft_stdlib.h"
+#include "libft.h"
 
 Test(strdup, basic)
 {

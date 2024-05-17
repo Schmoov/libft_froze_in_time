@@ -5,7 +5,7 @@
 #include <limits.h>
 #include <signal.h>
 #include <criterion/criterion.h>
-#include "../../include/ft_string.h"
+#include "libft.h"
 
 Test(strlcpy, basic)
 {
