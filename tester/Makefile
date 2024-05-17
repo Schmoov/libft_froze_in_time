@@ -1,65 +1,46 @@
-NAME := my_libft.a
+CC := gcc
+CFLAGS := -Wall -Wextra -Werror
 
 SRC_DIR := src/
-INC_DIR := include/
-OBJ_DIR := bin/
-TST_DIR := tests/
-TST_BIN := bintest/
+SRCS := $(wildcard $(SRC_DIR)*.c)
+
+BIN_DIR := .bin/
+OBJS := $(patsubst $(SRC_DIR)%.c, $(BIN_DIR)%.o, $(SRCS))
+
+TSTS := $(patsubst $(BIN_DIR)%.o, %, $(OBJS))
 
 CRIT := ~/lib/Criterion/libcriterion.so
 CRIT_ENV := LD_LIBRARY_PATH=~/lib/Criterion
 
-CC := gcc
-CFLAGS := -Wall -Wextra -Werror -pedantic
 ASAN := -fsanitize=address
 ASAN_ENV := ASAN_OPTIONS=log_path=bintest/log:abort_on_error=1:allocator_may_return_null=1
 
-SRC := $(wildcard $(SRC_DIR)*/*.c)
-
-OBJ := $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
-OBJ_PATH := $(sort $(dir $(OBJ)))
-
-HEADER := $(wildcard $(INC_DIR)*.h)
-
-TEST := $(wildcard $(TST_DIR)*/*.test.c)
-MTEST := $(wildcard $(TST_DIR)*/*.memtest.c)
-TEST_NAME := $(patsubst $(TST_DIR)%.test.c, $(TST_BIN)%.test, $(TEST))
-MTEST_NAME := $(patsubst $(TST_DIR)%.memtest.c, $(TST_BIN)%.memtest, $(MTEST))
-
 ###############################################################################
 
-all: $(NAME)
+all: test
 
-$(NAME): $(OBJ)
-	ar rcs $@ $^ $(HEADER)
+test: $(TSTS) 
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@ mkdir -p $(OBJ_PATH)
+$(BIN_DIR)%.o: $(SRC_DIR)%.c
+	mkdir -p $(BIN_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(TST_BIN)%.test: $(TST_DIR)%.test.c
-	@ mkdir -p $(dir $@)
+%.test: $(BIN_DIR)%.test.o
 	$(CC) $(CFLAGS) -I ~/lib/Criterion/include $< $(NAME) -lbsd $(CRIT) -o $@
 	$(CRIT_ENV) ./$@
 
-$(TST_BIN)%.memtest: $(TST_DIR)%.memtest.c
-	@ mkdir -p $(dir $@)
+%.memtest: $(BIN_DIR)%.o
 	$(CC) $(CFLAGS) -I ~/lib/Criterion/include $< $(NAME) -lbsd $(CRIT) -fsanitize=address -o $@
 	$(ASAN_ENV) $(CRIT_ENV) ./$@
 
-test: all $(TEST_NAME) $(MTEST_NAME)
-
 print-%  : ; @echo $* = $($*)
 
-tclean:
-	rm -rf $(TST_BIN)
-
-clean: tclean
-	rm -rf $(OBJ_DIR)
+clean:
+	rm -f $(BIN_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	rm *.test
 
 re: fclean all
 
-.PHONY: all test tclean clean fclean re
+.PHONY: all test clean fclean re
