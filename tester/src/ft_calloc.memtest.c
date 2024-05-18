@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:09:52 by parden            #+#    #+#             */
-/*   Updated: 2024/05/18 13:29:14 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/18 15:39:39 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ Test(calloc, too_big)
 
 Test(calloc, exact_range, .signal = SIGABRT)
 {
-	char *s = calloc(10000,sizeof(char));
-	s[10001]='X';
+	char *s = calloc(1000,sizeof(char));
+	s[1000]='X';
 	free(s);
 }
 
@@ -53,14 +53,14 @@ Test(calloc, product_overflows)
 	cr_expect_null(array);
 	cr_expect_eq(errno,ENOMEM);
 }
-/*
+
 Test(calloc, no_length, .signal = SIGABRT)
 {
 	int *array = calloc(1,sizeof(int));
 	printf("\n\n->%p\n\n", (void *)array);
 	free(array);
-	//int i = *array;
-	//i++;
+	int i = *array;
+	i++;
 }
 
 Test(calloc, no_size, .signal = SIGABRT)
@@ -83,4 +83,3 @@ Test(calloc, leaky, .signal = SIGABRT)
     cr_expect(__lsan_do_recoverable_leak_check());
     __lsan_do_leak_check();
 }
-*/

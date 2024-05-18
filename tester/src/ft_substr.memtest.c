@@ -26,6 +26,7 @@ Test(substr, basics)
 
 	test = ft_substr(s, strlen(s), 23);
 	cr_expect_str_eq(test, "");
+	printf("%s\n",test);
 	free(test);
 }
 

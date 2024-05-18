@@ -23,9 +23,13 @@ all: test
 
 test: $(OBJS) $(TSTS)
 
-$(BIN_DIR)%.o: $(SRC_DIR)%.c
+$(BIN_DIR)%.test.o: $(SRC_DIR)%.test.c
 	@ mkdir -p $(BIN_DIR)
 	$(CC) $(CFLAGS) -I ./ -c $< -o $@
+
+$(BIN_DIR)%.memtest.o: $(SRC_DIR)%.memtest.c
+	@ mkdir -p $(BIN_DIR)
+	$(CC) $(CFLAGS) $(ASAN) -I ./ -c $< -o $@
 
 $(TST_DIR)%.test: $(BIN_DIR)%.test.o
 	@ mkdir -p $(TST_DIR)
