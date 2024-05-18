@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:09:52 by parden            #+#    #+#             */
-/*   Updated: 2024/05/18 15:39:39 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/18 18:03:58 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ Test(calloc, product_overflows)
 Test(calloc, no_length, .signal = SIGABRT)
 {
 	int *array = calloc(1,sizeof(int));
-	printf("\n\n->%p\n\n", (void *)array);
 	free(array);
 	int i = *array;
 	i++;

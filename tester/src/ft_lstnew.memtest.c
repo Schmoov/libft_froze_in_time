@@ -10,7 +10,7 @@ Test(lstnew, basics)
 	cr_assert_null(new->next);
 	free(new);
 
-	char	c = '*'
+	char	c = '*';
 	new = ft_lstnew((void *)&c);
 	cr_assert_eq(*((char *)new->content), c);
 	cr_assert_null(new->next);

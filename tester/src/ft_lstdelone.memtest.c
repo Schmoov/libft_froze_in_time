@@ -7,14 +7,9 @@ void	identity(void *osef)
 	(void) osef;
 }
 
-void	free_str(void *node)
+void	free_rubik(void *content)
 {
-	free((char *)((t_list *)node->content));
-}
-
-void	free_rubik(void *node)
-{
-	int ***cube = (t_list *)node->content;
+	int ***cube = content;
 
 	for (int i = 0; i < 3; i++)
 		for (int j = 0; j < 3; j++)
@@ -32,7 +27,7 @@ Test(lstdelone, basic)
 
 	char	*str = strdup("Mammouth ecrase les prix");
 	t_list	*node_str = ft_lstnew((void *)&str);
-	ft_lstdelone(node_str, free_str);
+	ft_lstdelone(node_str, free);
 
 	int ***cub = malloc(3*sizeof(int **));
 	for (int i = 0; i < 3; i++)
@@ -45,5 +40,5 @@ Test(lstdelone, basic)
 			for (int k = 0; k < 3; k++)
 				cub[i][j][k] = 9*i + 3*j + k;
 	t_list	*node_cub = ft_lstnew((void *)&cub);
-	ft_lstdelone(node_cub, free_cube);
+	ft_lstdelone(node_cub, free_rubik);
 }

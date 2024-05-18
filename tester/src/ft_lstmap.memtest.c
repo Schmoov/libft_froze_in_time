@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "libft.h"
-
+/*
 void	*trim_first_letter(void *val)
 {
 	char	*s = *(char **)val;
@@ -126,4 +126,4 @@ Test(strmapi, empty)
 	t = ft_strmapi(s, f3);
 	cr_expect_str_eq(t, "");
 	free(t);
-}
+}*/

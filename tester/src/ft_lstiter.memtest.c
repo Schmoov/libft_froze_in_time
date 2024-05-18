@@ -15,7 +15,7 @@ void make_zero(void *val)
 
 void scream(void *val)
 {
-	char	*s = *(char **)val->content;
+	char	*s = *(char **)val;
 	int	i = 0;
 	while (s[i])
 	{
@@ -26,7 +26,7 @@ void scream(void *val)
 
 void bob(void *val)
 {
-	char	*s = *(char **)val->content;
+	char	*s = *(char **)val;
 	int	i = 0;
 	while (s[i])
 	{
@@ -38,14 +38,9 @@ void bob(void *val)
 	}
 }
 
-void	idendity(void *osef)
+void	identity(void *osef)
 {
 	(void)	osef;
-}
-
-void	free_str(void *node)
-{
-	free((char *)((t_list *)node->content));
 }
 
 Test(lstiter, ints)
@@ -90,15 +85,15 @@ Test(lstiter, strings)
 	ft_lstadd_front(&lst, node_str3);
 
 	ft_lstiter(lst, scream);
-	cr_expext_str_eq(*(char **)lst->content, "QUE D'HUMOUR !");
-	cr_expext_str_eq(*(char **)lst->next->content, "MAMIE ECRASE LES PROUTS");
-	cr_expext_str_eq(*(char **)lst->next->next->content, "MAMMOUTH ECRASE LES PRIX");
+	cr_expect_str_eq(*(char **)lst->content, "QUE D'HUMOUR !");
+	cr_expect_str_eq(*(char **)lst->next->content, "MAMIE ECRASE LES PROUTS");
+	cr_expect_str_eq(*(char **)lst->next->next->content, "MAMMOUTH ECRASE LES PRIX");
 
 	ft_lstiter(lst, bob);
-	cr_expext_str_eq(*(char **)lst->content, "qUe d'hUmOuR !");
-	cr_expext_str_eq(*(char **)lst->next->content, "mAmIe eCrAsE LeS PrOuTs");
-	cr_expext_str_eq(*(char **)lst->next->next->content, "mAmMoUtH EcRaSe lEs pRiX");
+	cr_expect_str_eq(*(char **)lst->content, "qUe d'hUmOuR !");
+	cr_expect_str_eq(*(char **)lst->next->content, "mAmIe eCrAsE LeS PrOuTs");
+	cr_expect_str_eq(*(char **)lst->next->next->content, "mAmMoUtH EcRaSe lEs pRiX");
 
 
-	ft_lstclear(&lst, free_str);
+	ft_lstclear(&lst, free);
 }

@@ -7,11 +7,6 @@ void	identity(void *osef)
 	(void) osef;
 }
 
-void	free_str(void *node)
-{
-	free((char *)((t_list *)node->content));
-}
-
 Test(lstclear, basics)
 {
 	int	a = 42;
@@ -37,5 +32,5 @@ Test(lstclear, basics)
 	ft_lstadd_front(&lst, node_str1);
 	ft_lstadd_front(&lst, node_str2);
 	ft_lstadd_front(&lst, node_str3);
-	ft_lstclear(&lst, free_str);
+	ft_lstclear(&lst, free);
 }
