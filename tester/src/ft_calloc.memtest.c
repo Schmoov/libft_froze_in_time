@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:09:52 by parden            #+#    #+#             */
-/*   Updated: 2024/05/18 12:06:21 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/18 13:29:14 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,21 @@ Test(calloc, basic)
 	cr_expect_str_eq(s,"");	
 	free(s);
 }
-/*
+
 Test(calloc, too_big)
 {
-	int *array = ft_calloc(UINT_MAX,sizeof(int));
+	int *array = ft_calloc(ULONG_MAX/100 ,sizeof(int));
 	cr_expect_null(array);
 	cr_expect_eq(errno,ENOMEM);
 }
 
 Test(calloc, exact_range, .signal = SIGABRT)
 {
-	char *s = ft_calloc(10000,sizeof(char));
-	char c = s[10000];
-	(void) c;
+	char *s = calloc(10000,sizeof(char));
+	s[10001]='X';
 	free(s);
 }
-*/
+
 Test(calloc, product_overflows)
 {
 	size_t i = ULONG_MAX/4 + 2;
@@ -54,8 +53,8 @@ Test(calloc, product_overflows)
 	cr_expect_null(array);
 	cr_expect_eq(errno,ENOMEM);
 }
-
-Test(calloc, no_length/*, .signal = SIGABRT*/)
+/*
+Test(calloc, no_length, .signal = SIGABRT)
 {
 	int *array = calloc(1,sizeof(int));
 	printf("\n\n->%p\n\n", (void *)array);
@@ -63,7 +62,7 @@ Test(calloc, no_length/*, .signal = SIGABRT*/)
 	//int i = *array;
 	//i++;
 }
-/*
+
 Test(calloc, no_size, .signal = SIGABRT)
 {
 	int *array = ft_calloc(42,0);
