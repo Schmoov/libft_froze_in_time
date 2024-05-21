@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 10:40:38 by parden            #+#    #+#             */
-/*   Updated: 2024/05/17 14:55:55 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/21 17:11:57 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static size_t	count_char(int n)
 	size_t	count;
 
 	count = 0;
-	if (!n)
-		return (0);
+	if (n == 0)
+		return (1);
 	if (n < 0)
 		count++;
 	while (n)
@@ -30,19 +30,24 @@ static size_t	count_char(int n)
 	return (count);
 }
 
-static void stack_itoa(int n, char *s)
+static void stack_itoa(int nb, char *s)
 {
-	size_t	len;
+	size_t		len;
+	long long	n;
 
+	n = nb;
 	len = count_char(n);
 	s[len] = 0;
 	if (!n)
 		*s = '0';
 	if (n < 0)
-		*s = '-';
-	while (n/10)
 	{
-		s[len - 1] = n % 10;
+		*s = '-';
+		n = -n;
+	}
+	while (n)
+	{
+		s[len - 1] = (n % 10) + '0';
 		len--;
 		n /= 10;
 	}
