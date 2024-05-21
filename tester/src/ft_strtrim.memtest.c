@@ -31,3 +31,11 @@ Test(strtrim, basics)
 	cr_expect_str_eq(test, "bonjour  bonjour");
 	free(test);
 }
+
+Test(strtrim, delete_everything)
+{
+	char *s = "   xxxx xxx xxx   x";
+	char *test = ft_strtrim(s, "x ");
+	cr_expect_str_eq(test, "");
+	free(test);
+}

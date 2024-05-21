@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:25:26 by parden            #+#    #+#             */
-/*   Updated: 2024/05/17 14:56:40 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/21 18:16:06 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static size_t	count_words(char const *s, char c)
 	return (count);
 }
 
-static	size_t insert_word(char **res, char const *s, size_t start, char c)
+static size_t	insert_word(char **res, char const *s, size_t start, char c)
 {
 	size_t	len;
 

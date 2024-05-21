@@ -42,6 +42,15 @@ Test(split, basics)
 	cr_assert_null(test[0]);
 	free2d(test);
 }
+
+Test(split, char_not_in_str)
+{
+	char *s = "Tripouille";
+	char **test = ft_split(s, ',');
+	cr_assert_str_eq(test[0],"Tripouille");
+	cr_assert_null(test[1]);
+	free2d(test);
+}
 /*
 Test(itoa, memtest42, .signal = SIGABRT)
 {

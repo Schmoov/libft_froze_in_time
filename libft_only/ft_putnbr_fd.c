@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 10:40:38 by parden            #+#    #+#             */
-/*   Updated: 2024/05/21 17:11:57 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/21 18:15:30 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static size_t	count_char(int n)
 	return (count);
 }
 
-static void stack_itoa(int nb, char *s)
+static void	stack_itoa(int nb, char *s)
 {
 	size_t		len;
 	long long	n;
@@ -55,7 +55,7 @@ static void stack_itoa(int nb, char *s)
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char s[12];
+	char	s[12];
 
 	stack_itoa(n, s);
 	ft_putstr_fd(s, fd);

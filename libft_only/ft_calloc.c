@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 11:16:12 by parden            #+#    #+#             */
-/*   Updated: 2024/05/17 14:53:50 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/21 18:17:14 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_calloc(size_t nelem, size_t elsize)
 {
 	void	*ret;
 
-	if (ULONG_MAX/elsize < nelem)
+	if (ULONG_MAX / elsize < nelem)
 	{
 		errno = ENOMEM;
 		return (NULL);
