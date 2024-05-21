@@ -22,12 +22,9 @@ Test(lstclear, basics)
 	ft_lstadd_front(&lst, node_c);
 	ft_lstclear(&lst, identity);
 
-	char	*str1 = strdup("Mammouth ecrase les prix");
-	char	*str2 = strdup("Mamie ecrase les prouts");
-	char	*str3 = strdup("Que d'humour !");
-	t_list	*node_str1 = ft_lstnew((void *)&str1);
-	t_list	*node_str2 = ft_lstnew((void *)&str2);
-	t_list	*node_str3 = ft_lstnew((void *)&str3);
+	t_list	*node_str1 = ft_lstnew((void *)strdup("Mammouth ecrase les prix"));
+	t_list	*node_str2 = ft_lstnew((void *)strdup("Mamie ecrase les prouts"));
+	t_list	*node_str3 = ft_lstnew((void *)strdup("Que d'humour !"));
 
 	ft_lstadd_front(&lst, node_str1);
 	ft_lstadd_front(&lst, node_str2);

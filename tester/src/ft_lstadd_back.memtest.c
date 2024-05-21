@@ -19,12 +19,12 @@ Test(lstadd_back, basics)
 	ft_lstadd_back(&list, node_b);
 	cr_assert_eq(*(int *)list->content, a);
 	cr_assert_eq(*(int *)list->next->content, b);
-	cr_assert_eq(list->next, node_a);
+	cr_assert_eq(list->next, node_b);
 
 	ft_lstadd_back(&list, node_c);
 	cr_assert_eq(*(int *)list->content, a);
 	cr_assert_eq(*(int *)list->next->next->content, c);
-	cr_assert_eq(list->next, node_a);
+	cr_assert_eq(list->next, node_b);
 
 	free(node_a);
 	free(node_b);
