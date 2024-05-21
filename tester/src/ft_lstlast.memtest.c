@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include "libft.h"
 
+void	no_op(void *cont)
+{
+	(void) cont;
+}
+
 Test(lstlast, basics)
 {
 	int	a = 42;
@@ -23,7 +28,5 @@ Test(lstlast, basics)
 	ft_lstadd_back(&list, node_c);
 	cr_assert_eq(ft_lstlast(list), node_c);
 
-	free(node_a);
-	free(node_b);
-	free(node_c);
+	ft_lstclear(&list, no_op);
 }
