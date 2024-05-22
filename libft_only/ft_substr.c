@@ -6,14 +6,14 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:09:44 by parden            #+#    #+#             */
-/*   Updated: 2024/05/21 18:14:55 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 15:20:05 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-//Behaviour is undefined for start >= strlen(s)
+//Behaviour is undefined for start > strlen(s)
 //Allocates extra mem if len is optimist
 //Does not compute strlen(s) !
 char	*ft_substr(char const *s, unsigned int start, size_t len)

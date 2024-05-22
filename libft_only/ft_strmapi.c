@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 10:40:38 by parden            #+#    #+#             */
-/*   Updated: 2024/05/17 14:59:03 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 16:43:27 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
-	char	*res;
+	unsigned int	i;
+	char			*res;
 
 	i = 0;
 	res = ft_strdup(s);

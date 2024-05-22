@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:25:26 by parden            #+#    #+#             */
-/*   Updated: 2024/05/21 18:16:06 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 16:35:18 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static size_t	count_words(char const *s, char c)
 	return (count);
 }
 
+//Returns the end of current word or 0 if alloc fails
 static size_t	insert_word(char **res, char const *s, size_t start, char c)
 {
 	size_t	len;
@@ -58,7 +59,7 @@ static size_t	insert_word(char **res, char const *s, size_t start, char c)
 	return (start + len);
 }
 
-static char	**insert_all(char **res, char const *s, char c, size_t count)
+static char	**wrap_split(char **res, char const *s, char c, size_t count)
 {
 	size_t	start;
 	size_t	i;
@@ -87,5 +88,5 @@ char	**ft_split(char const *s, char c)
 	res = (char **)ft_calloc(word_count + 1, sizeof(char *));
 	if (!res)
 		return (NULL);
-	return (insert_all(res, s, c, word_count));
+	return (wrap_split(res, s, c, word_count));
 }
