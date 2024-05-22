@@ -6,13 +6,14 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:09:52 by parden            #+#    #+#             */
-/*   Updated: 2024/05/17 17:31:31 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 14:54:15 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <limits.h>
 #include <stddef.h>
+#include <signal.h>
 #include <criterion/criterion.h>
 #include "libft.h"
 
@@ -35,9 +36,17 @@ Test(atoi, basic)
 	cr_assert_eq(atoi("0000000000000000000000000"), ft_atoi("0000000000000000000000000"));
 }
 
-Test(atoi, edge)
+Test(atoi, WAY, .signal=SIGSEGV)
 {
 	cr_assert_eq(0, ft_atoi("2147483648"));
+}
+
+Test(atoi, OF_THE, .signal=SIGSEGV)
+{
 	cr_assert_eq(0, ft_atoi("-2147483649"));
+}
+
+Test(atoi, SAMURAI, .signal=SIGSEGV)
+{
 	cr_assert_eq(0, ft_atoi("999999999999999999999999999999999"));
 }

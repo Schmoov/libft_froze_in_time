@@ -6,20 +6,26 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 11:32:44 by parden            #+#    #+#             */
-/*   Updated: 2024/05/17 14:52:43 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 14:50:52 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <limits.h>
 #include "libft.h"
 
-static int	is_int(long n)
+static int	ft_seppuku(void)
+{
+	int	*katana;
+
+	katana = NULL;
+	return(*katana);
+}
+
+static bool	is_int(long long n)
 {
 	return (n <= INT_MAX && n >= INT_MIN);
 }
 
-static int	ft_isspace(int c)
+static bool	ft_isspace(int c)
 {
 	return (c == ' ' || c == '\f' || c == '\n'
 		|| c == '\r' || c == '\t' || c == '\v');
@@ -27,9 +33,9 @@ static int	ft_isspace(int c)
 
 int	ft_atoi(const char *nptr)
 {
-	long	res;
-	size_t	i;
-	int		sign;
+	long long	res;
+	size_t		i;
+	int			sign;
 
 	res = 0;
 	i = 0;
@@ -49,6 +55,6 @@ int	ft_atoi(const char *nptr)
 	}
 	res *= sign;
 	if (!is_int(res))
-		return (0);
+		ft_seppuku();
 	return (res);
 }

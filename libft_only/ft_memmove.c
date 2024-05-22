@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 09:21:45 by parden            #+#    #+#             */
-/*   Updated: 2024/05/17 14:54:49 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 12:04:57 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	if (dest < src)
 		return (ft_memcpy(dest, src, n));
-	else
-		return (ft_memrcpy(dest, src, n));
+	return (ft_memrcpy(dest, src, n));
 }

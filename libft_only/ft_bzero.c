@@ -6,22 +6,13 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 08:30:10 by parden            #+#    #+#             */
-/*   Updated: 2024/03/23 13:02:26 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 11:58:26 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t			i;
-	unsigned char	*str;
-
-	str = (unsigned char *)s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = 0;
-		i++;
-	}
+	ft_memset(s, 0, n);
 }

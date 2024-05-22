@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:12:10 by parden            #+#    #+#             */
-/*   Updated: 2024/03/23 13:24:17 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 12:10:59 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])

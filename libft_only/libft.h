@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 12:42:49 by parden            #+#    #+#             */
-/*   Updated: 2024/05/21 18:34:05 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 14:45:29 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LIBFT_H
 
 # include <stddef.h>
+# include <limits.h>
+# include <stdbool.h>
 
 //ctype
 int		ft_isalnum(int c);

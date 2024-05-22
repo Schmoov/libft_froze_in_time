@@ -6,33 +6,20 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:55:11 by parden            #+#    #+#             */
-/*   Updated: 2024/05/17 14:58:27 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 12:39:53 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "libft.h"
 
+//Technically dstsize==dst_len is a sufficient check
+//since dstsize<dst_len is UB. man does mention the check though...
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i_dst;
-	size_t	i_src;
+	size_t dst_len;
 
-	i_dst = ft_strlen(dst);
-	if (i_dst >= dstsize)
-		return (ft_strlen(src) + dstsize);
-	i_src = 0;
-	while (src[i_src] && (i_dst + 1 < dstsize))
-	{
-		dst[i_dst] = src[i_src];
-		i_src++;
-		i_dst++;
-	}
-	dst[i_dst] = 0;
-	while (src[i_src])
-	{
-		i_src++;
-		i_dst++;
-	}
-	return (i_dst);
+	dst_len = ft_strlen(dst);
+	if (dstsize <= dst_len)
+		return (dstsize + ft_strlen(src));
+	return (dst_len + ft_strlcpy(dst + dst_len, src, dstsize - dst_len));
 }

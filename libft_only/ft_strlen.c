@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:28:35 by parden            #+#    #+#             */
-/*   Updated: 2024/03/23 10:31:21 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 12:27:14 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t	i;
+	char *p;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	p = (char *)s;
+	while (*p)
+		p++;
+	return (p-s);
 }
