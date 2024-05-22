@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:25:26 by parden            #+#    #+#             */
-/*   Updated: 2024/05/22 16:35:18 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 19:22:10 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static size_t	insert_word(char **res, char const *s, size_t start, char c)
 	while (s[start] == c)
 		start++;
 	len = 0;
-	while (s[start + len] != c)
+	while (s[start + len] && s[start + len] != c)
 		len++;
 	*res = ft_substr(s, start, len);
 	if (!(*res))
