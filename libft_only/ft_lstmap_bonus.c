@@ -1,41 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 16:00:46 by parden            #+#    #+#             */
-/*   Updated: 2024/05/18 16:40:01 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 18:28:16 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
+static t_list	*malloc_failed(t_list **res, void (*del)(void *))
+{
+	ft_lstclear(res, del);
+	return (NULL);
+}
+
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*res;
 	t_list	*tmp;
+	void	*tmp_cont;
 
-	res = ft_lstnew(f(lst->content));
-	if (!res)
-	{
-		del(res->content);
-		free(res);
+	tmp_cont = f(lst->content);
+	if (!tmp_cont)
 		return (NULL);
-	}
+	res = ft_lstnew(tmp_cont);
+	if (!res)
+		return (NULL);
 	tmp = res;
 	lst = lst->next;
 	while (lst)
 	{
-		tmp->next = ft_lstnew(f(lst->content));
+		tmp_cont = f(lst->content);
+		if (!tmp_cont)
+			return (malloc_failed(&res, del));
+		tmp->next = ft_lstnew(tmp_cont);
 		tmp = tmp->next;
 		if (!tmp)
-		{
-			ft_lstclear(&res, del);
-			return (NULL);
-		}
+			return (malloc_failed(&res, del));
 		lst = lst->next;
 	}
 	return (res);

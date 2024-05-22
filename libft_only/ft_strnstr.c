@@ -6,13 +6,13 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 12:18:12 by parden            #+#    #+#             */
-/*   Updated: 2024/05/22 14:44:55 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 18:04:49 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static bool is_match(char *candidate, const char *little, size_t len)
+static bool	is_match(char *candidate, const char *little, size_t len)
 {
 	size_t	i;
 

@@ -6,12 +6,14 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 11:32:44 by parden            #+#    #+#             */
-/*   Updated: 2024/05/22 14:50:52 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 17:44:47 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Id rather have it crash on overflow but man hints strongly as 0 as error
+/*
 static int	ft_seppuku(void)
 {
 	int	*katana;
@@ -19,7 +21,7 @@ static int	ft_seppuku(void)
 	katana = NULL;
 	return(*katana);
 }
-
+*/
 static bool	is_int(long long n)
 {
 	return (n <= INT_MAX && n >= INT_MIN);
@@ -55,6 +57,6 @@ int	ft_atoi(const char *nptr)
 	}
 	res *= sign;
 	if (!is_int(res))
-		ft_seppuku();
+		res = 0;
 	return (res);
 }

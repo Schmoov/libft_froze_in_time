@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:55:11 by parden            #+#    #+#             */
-/*   Updated: 2024/05/22 12:39:53 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/22 18:05:52 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //since dstsize<dst_len is UB. man does mention the check though...
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t dst_len;
+	size_t	dst_len;
 
 	dst_len = ft_strlen(dst);
 	if (dstsize <= dst_len)
