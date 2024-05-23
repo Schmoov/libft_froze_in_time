@@ -75,28 +75,10 @@ Test(substr, dup_not_cpy)
 	cr_expect_str_eq(t,"unstable");
 	free(t);
 }
-/*
-Test(itoa, memtest42, .signal = SIGABRT)
-{
-    char *s = ft_itoa(42);
-    char c = s[3];
-    (void) c;
-    free(s);
-}
 
-Test(itoa, memtest_neg, .signal = SIGABRT)
+Test(substr, leak_on_empty_str)
 {
-    char *s = ft_itoa(-45042);
-    char c = s[7];
-    (void) c;
-    free(s);
+	char *t = ft_substr("", 0, 10);
+	cr_expect_str_eq("", t);
+	free(t);
 }
-
-Test(itoa, memtest0, .signal = SIGABRT)
-{
-    char *s = ft_itoa(-0);
-    char c = s[2];
-    (void) c;
-    free(s);
-}
-*/
