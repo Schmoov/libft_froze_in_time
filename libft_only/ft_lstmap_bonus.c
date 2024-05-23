@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 16:00:46 by parden            #+#    #+#             */
-/*   Updated: 2024/05/23 12:35:40 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/23 13:04:53 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ static void	*catch_alloc(t_list *lst, void (*del)(void *), void	*maybe_cont)
 	return (NULL);
 }
 
+//f can allocate memory, thus it can fail, thus it is assumed to reserve
+//NULL as ENOMEM error this implementation handles correctly the case
+//where f fails but lstnew succeeds.
+//A f that returns NULL as value is considered UB.
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	head;
@@ -44,6 +48,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (head.next);
 }
+//The normie version : caller has the responsability to check every
+//content for NULL to ensure f didn't fail. Yuck !
 /*
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
@@ -69,43 +75,5 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		lst = lst->next;
 	}
 	return (head.next);
-}
-*/
-/*
-static t_list	*malloc_failed(t_list **res, void (*del)(void *), void *todel)
-{
-	if (todel)
-		del(todel);
-	ft_lstclear(res, del);
-	return (NULL);
-}
-
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
-{
-	t_list	*res;
-	t_list	*tmp;
-	void	*tmp_cont;
-
-	res = ft_lstnew(NULL);
-	if (!lst || !res)
-		return (NULL);
-	tmp_cont = f(lst->content);
-	if (!tmp_cont)
-		return (NULL);
-	res->content = tmp_cont;
-	tmp = res;
-	lst = lst->next;
-	while (lst)
-	{
-		tmp_cont = f(lst->content);
-		if (!tmp_cont)
-			return (malloc_failed(&res, del, NULL));
-		tmp->next = ft_lstnew(tmp_cont);
-		tmp = tmp->next;
-		if (!tmp)
-			return (malloc_failed(&res, del, tmp_cont));
-		lst = lst->next;
-	}
-	return (res);
 }
 */
