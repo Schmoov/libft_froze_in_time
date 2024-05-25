@@ -6,7 +6,7 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:09:52 by parden            #+#    #+#             */
-/*   Updated: 2024/05/18 18:03:58 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/25 13:51:44 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ Test(calloc, exact_range, .signal = SIGABRT)
 
 Test(calloc, product_overflows)
 {
-	size_t i = ULONG_MAX/4 + 2;
-	int *array = ft_calloc(i,sizeof(int));
+	size_t i = SIZE_MAX/4 + 2;
+	int *array = ft_calloc(i,4);
 	cr_expect_null(array);
-	cr_expect_eq(errno,ENOMEM);
+	//cr_expect_eq(errno,ENOMEM);
 }
 
 Test(calloc, no_length, .signal = SIGABRT)

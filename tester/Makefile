@@ -19,7 +19,11 @@ ASAN_ENV := ASAN_OPTIONS=log_path=$(LOG_DIR):abort_on_error=1:allocator_may_retu
 
 ###############################################################################
 
-all: test
+all: libft.a test
+
+libft.a:
+	make -C ../libft_only bonus
+	cp ../libft_only/libft.a ./
 
 test: $(OBJS) $(TSTS)
 

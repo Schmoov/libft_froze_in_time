@@ -1,6 +1,7 @@
 #include "libft.h"
 #include <criterion/criterion.h>
 #include <signal.h>
+#include <stdio.h>
 
 void free2d(char **split)
 {
@@ -43,36 +44,27 @@ Test(split, basics)
 	free2d(test);
 }
 
-Test(split, char_not_in_str)
+Test(split, Schrodingers_bug)
 {
 	char *s = "Tripouille";
-	char **test = ft_split(s, ',');
+	char **test = ft_split(s, '~');
 	cr_assert_str_eq(test[0],"Tripouille");
 	cr_assert_null(test[1]);
 	free2d(test);
-}
-/*
-Test(itoa, memtest42, .signal = SIGABRT)
-{
-    char *s = ft_itoa(42);
-    char c = s[3];
-    (void) c;
-    free(s);
-}
 
-Test(itoa, memtest_neg, .signal = SIGABRT)
-{
-    char *s = ft_itoa(-45042);
-    char c = s[7];
-    (void) c;
-    free(s);
-}
+	test = ft_split(s, '0');
+	cr_assert_str_eq(test[0],"Tripouille");
+	cr_assert_null(test[1]);
+	free2d(test);
 
-Test(itoa, memtest0, .signal = SIGABRT)
-{
-    char *s = ft_itoa(-0);
-    char c = s[2];
-    (void) c;
-    free(s);
+	test = ft_split(s, 'W');
+	cr_assert_str_eq(test[0],"Tripouille");
+	cr_assert_null(test[1]);
+	free2d(test);
+
+	test = ft_split(s, '\v');
+	cr_assert_str_eq(test[0],"Tripouille");
+	cr_assert_null(test[1]);
+	free2d(test);
+
 }
-*/

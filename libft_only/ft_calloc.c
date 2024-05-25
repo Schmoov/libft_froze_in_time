@@ -6,21 +6,23 @@
 /*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 11:16:12 by parden            #+#    #+#             */
-/*   Updated: 2024/05/22 16:46:56 by parden           ###   ########.fr       */
+/*   Updated: 2024/05/25 12:47:38 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-#include <errno.h>
 
+//Normie edition : Just add the errno line under the SIZE_MAX
+//check to upgrade to POSIX compliancy
+//#include <errno.h>
+//errno = ENOMEM;
 void	*ft_calloc(size_t nelem, size_t elsize)
 {
 	void	*ret;
 
 	if (SIZE_MAX / elsize < nelem)
 	{
-		errno = ENOMEM;
 		return (NULL);
 	}
 	ret = (void *)malloc(nelem * elsize);
