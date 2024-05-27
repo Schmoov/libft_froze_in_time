@@ -10,6 +10,8 @@ OBJS := $(patsubst $(SRC_DIR)%.c, $(BIN_DIR)%.o, $(SRCS))
 TST_DIR := tests/
 TSTS := $(patsubst $(BIN_DIR)%.o, $(TST_DIR)%, $(OBJS))
 
+LIBFT := libft.h libft.a
+
 CRIT := -L criterion -lcriterion
 CRIT_ENV := LD_LIBRARY_PATH=criterion
 
@@ -54,6 +56,7 @@ clean:
 	rm -rf $(LOG_DIR)
 
 fclean: clean
+	rm -f $(LIBFT)
 	rm -rf $(TST_DIR)
 
 re: fclean all
