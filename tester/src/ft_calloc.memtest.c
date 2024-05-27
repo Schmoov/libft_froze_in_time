@@ -76,6 +76,7 @@ Test(calloc, no_no, .signal = SIGABRT)
 	i++;
 }
 
+//doesnt work with clang, dont know why
 Test(calloc, leaky, .signal = SIGABRT)
 {
     ((char *)ft_calloc(1,1))[0]=0;

@@ -21,7 +21,7 @@ void	*ft_calloc(size_t nelem, size_t elsize)
 {
 	void	*ret;
 
-	if (SIZE_MAX / elsize < nelem)
+	if (elsize && SIZE_MAX / elsize < nelem)
 	{
 		return (NULL);
 	}

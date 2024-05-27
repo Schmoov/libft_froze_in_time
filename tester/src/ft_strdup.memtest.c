@@ -56,9 +56,11 @@ Test(strdup, exact_alloc, .signal = SIGABRT)
 	i++;
 }
 
+//doesnt work with clang, dont know why
 Test(strdup, leaky, .signal = SIGABRT)
 {
 	ft_strdup("leak")[2]=4;
 	cr_expect(__lsan_do_recoverable_leak_check());
 	__lsan_do_leak_check();
 }
+
