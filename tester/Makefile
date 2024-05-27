@@ -1,4 +1,4 @@
-CC := gcc
+CC := cc
 CFLAGS := -Wall -Wextra -Werror
 
 SRC_DIR := src/
@@ -19,11 +19,13 @@ ASAN_ENV := ASAN_OPTIONS=log_path=$(LOG_DIR):abort_on_error=1:allocator_may_retu
 
 ###############################################################################
 
-all: libft.a test
+all: $(LIBFT) test
 
-libft.a:
-	make -C ../libft_only bonus
-	cp ../libft_only/libft.a ./
+$(LIBFT):
+	make -C ../libft all
+	make -C ../libft bonus
+	cp ../libft/libft.a ./
+	cp ../libft/libft.h ./
 
 test: $(OBJS) $(TSTS)
 
